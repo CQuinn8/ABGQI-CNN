@@ -1,0 +1,6 @@
+File_name,Selection,View,Channel,Begin_Time_s,End_Time_s,Low_Freq_Hz,High_Freq_Hz,Annotation
+s2llg003_190530_2019-05-30_17-10.wav,6.0,Spectrogram 1,1.0,28.1631,31.0,844.268,11627.866000000002,OQU
+s2lam051_190531_2019-06-01_21-30.wav,4.0,Spectrogram 1,1.0,11.2957,13.0,0.0,329.63,AMU
+s2llg008_180502_2018-05-08_09-00.wav,2.0,Spectrogram 1,1.0,7.4828,8.0,3647.714,8215.636999999999,BBI
+s2llg003_190530_2019-06-01_09-20.wav,3.0,Spectrogram 1,1.0,32.4845,34.0,440.816,2400.0,AMA
+s2lam028_190412_2019-04-15_07-30.wav,7.0,Spectrogram 1,1.0,0.0,5.0,0.0,2093.264,AVT

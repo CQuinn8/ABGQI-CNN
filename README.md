@@ -1,8 +1,14 @@
 # Code repository for Quinn et al., 2022 <doi> 
-This repository can: 
+This code repository contains R and python scripts that process data and produce results from provided intermediate products for soundscape classification and ecological analyses. This work was funded under the Soundscapes 2 Landscapes, NASA’s Citizen Science for Earth Systems Program 16-CSESP 2016-0009 and is citable using the Zenodo DOI.
+  
+### This repository can: 
   1) generate all code-based figures, tables, and numerical results in the published manuscript.
   2) be used to re-train the ABGQI-CNN
   3) be applied to novel acoustic data by generating 2-s Mel spectrograms, ABGQI-CNN inference probabilities, f-score threshold optimization, and classification based on CNN findings related to Soundscapes 2 Landscapes data
+
+### Installation  
+- Two Anaconda python environments are included in .yml files under envs. These provide information related to libraries used in spectrogram generation, CNN training, and inference. 
+- R required libraries can be found in the envs R_requirements.txt file. The R_lib_install.R file can be run to install all packages in the requirements text file or you can manually download every package.
 
 
 ### List of scripts used to derive manuscript figures, tables, and results sections (when applicable):
@@ -27,3 +33,5 @@ This repository can:
 - 3.2.4: Distance to roads: 4_ABGQI_environ_analyses-R/code/1_KWDunn_tests-LULC_Roads_Annual.R
 - 3.2.5: Effect of wind speed on soundscapes: not included as contains non-public GIS data
 - 3.3 Factors affecting amount of soundcape components: 4_ABGQI_environ_analyses-R/code/3_multivariate_regression.R
+
+ Author email: cq73@nau.edu

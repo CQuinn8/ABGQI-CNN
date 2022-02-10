@@ -10,8 +10,8 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(rstatix) # Kruskal Wallis
-source('color_theme_fxs.R')
-source('functions.R')
+source('support_functions/color_theme_fxs.R')
+source('support_functions/functions.R')
 
 # location for agg data and results
 data_dir = '4_ABGQI_environ_analyses-R/data/'

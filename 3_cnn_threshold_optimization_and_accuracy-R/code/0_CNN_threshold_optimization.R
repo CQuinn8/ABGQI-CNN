@@ -8,7 +8,7 @@ library(dplyr) # data manipulation
 library(ggplot2) # plotting
 library(WeightedROC) # accuracy metrics
 library(e1071) # accuracy metrics
-source('color_theme_fxs.R')
+source('support_functions/color_theme_fxs.R')
 
 # CNN inference csvs (here, a test and train/val csv for each class; n = 10 csvs)
 inf_wd = '3_cnn_threshold_optimization_and_accuracy-R/data/cnn_inference/'   

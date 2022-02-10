@@ -12,8 +12,8 @@ library(ggplot2)
 library(MASS) # stepwise variable selection
 library(lmtest) # LRT
 
-source('color_theme_fxs.R')
-source('functions.R')
+source('support_functions/color_theme_fxs.R')
+source('support_functions/functions.R')
 
 data_dir = '4_ABGQI_environ_analyses-R/data/'
 df = read.csv(paste0(data_dir,'linear_regression_df.csv' ))

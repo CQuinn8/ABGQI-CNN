@@ -7,11 +7,8 @@
 setwd('/published_repo/')
 
 library(dplyr)
-library(plyr)
 library(tidyr)
 library(ggplot2)
-library(readxl)
-library(GGally)
 library(MASS) # stepwise variable selection
 library(lmtest) # LRT
 
@@ -75,6 +72,7 @@ ggplot(data = resid_df, aes(x = resids, fill = soundType)) +
 ggplot(data = resid_df, aes(x = RoadDist, y = resids, colour = Recorder)) +
   geom_point()
 plot(step_model)
+
 
 
 # Test LULC removal as it is only significant in interaction with road distance

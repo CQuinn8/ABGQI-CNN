@@ -29,7 +29,7 @@ This code repository contains R and python scripts that process data and produce
 ### Results sections:
 - 3.1 Model performance: most metrics in 3_cnn_threshold_optimization_and_accuracy-R/code/1_CNN_accuracy_metrics.R; cross validation numbers in data repository; rate of unidentified sound from 4_ABGQI_environ_analyses-R/code/0_ABGQIU_temporal_plotting_faceted_LCLU_figure6.R
 - 3.2 Statistical anlayses of soundscape components: 4_ABGQI_environ_analyses-R/code/0_ABGQIU_temporal_plotting_faceted_LCLU_figure6.R
-- 3.2.1 Diurnal LULC patterns: 4_ABGQI_environ_analyses-R/code/2_KWDunn_tests-day_night.R  and 0_ABGQIU_temporal_plotting_faceted_LCLU_figure6.R
+- 3.2.1 Diurnal LULC patterns: 4_ABGQI_environ_analyses-R/code/2_MannWhitney_tests-day_night.R  and 0_ABGQIU_temporal_plotting_faceted_LCLU_figure6.R
 - 3.2.2 Annual and date of deployment differences: 4_ABGQI_environ_analyses-R/code/1_KWDunn_tests-LULC_Roads_Annual.R
 - 3.2.3: Daytime LULC stratification:  4_ABGQI_environ_analyses-R/code/1_KWDunn_tests-LULC_Roads_Annual.R
 - 3.2.4: Distance to roads: 4_ABGQI_environ_analyses-R/code/1_KWDunn_tests-LULC_Roads_Annual.R

@@ -1,4 +1,4 @@
-# Purpose: use hourly ABGOQ values to perform kruskal wallis and dunn test analyses for day and night soundscape differences
+# Purpose: use hourly ABGOQ values to perform Mann-Whitney analyses for day and night soundscape differences
 # Requires: site_by_hour_ABGQIU_fscore_075.csv and S2L_site_geog-env_data.csv
 # Outputs: Results 3.2.1
 # Author: Colin Quinn <cq73@nau.edu>
@@ -72,27 +72,26 @@ temp_df %>%
 temp_df %>%
      dplyr::select(Anthropophony, Biophony, Geophony, Quiet, DayNight) %>%
      group_by(DayNight) %>%
-     summarise(across(where(is.numeric), mean))
+     summarise(across(where(is.numeric), median))
 
-# KW tests
+# MW-U tests
 # Anthro
-kruskal.test(Anthropophony ~ DayNight, data = temp_df)
+wilcox.test(Anthropophony ~ DayNight, data = temp_df, conf.int = T, exact = T)
 
 # Bio
-kruskal.test(Biophony ~ DayNight, data = temp_df)
+wilcox.test(Biophony ~ DayNight, data = temp_df, conf.int = T, exact = T)
 
 # Geo
-kruskal.test(Geophony ~ DayNight, data = temp_df)
+wilcox.test(Geophony ~ DayNight, data = temp_df, conf.int = T, exact = T)
 
 # Quiet
-kruskal.test(Quiet ~ DayNight, data = temp_df)
+wilcox.test(Quiet ~ DayNight, data = temp_df, conf.int = T, exact = T)
 
 # Int
-kruskal.test(Interference ~ DayNight, data = temp_df)
+wilcox.test(Interference ~ DayNight, data = temp_df, conf.int = T, exact = T)
 
 # U
-kruskal.test(Unidentified ~ DayNight, data = temp_df)
-
+wilcox.test(Unidentified ~ DayNight, data = temp_df, conf.int = T, exact = T)
 
 
 ######## Day vs Night + LULC Analysis #################
@@ -121,44 +120,3 @@ temp_df %>%
   theme_Publication() + 
   theme(axis.text.x = element_text(angle = 90, hjust=1)) +
   scale_fill_Publication()
-
-# Looking only at ABGQ + LULC pairs without overlap in ggplot (i.e. possible SIG Pairs)
-# All Anthro pairs are significant
-# All quiet pairs are significant
-
-# All Bio pairs are significant
-# B + RW
-temp = temp_df %>% filter(LULC == 'Riparian/Wetland')
-kruskal.test(Biophony ~ DayNight, data = temp)
-# significant p = 0.007036
-
-# Some geo are not significant
-# Geo + Urban
-temp = temp_df %>% filter(LULC == 'Urban/Developed')
-kruskal.test(Geophony ~ DayNight, data = temp)
-# NOT significant chi-squared = 0.98044, df = 1, p-value = 0.3221
-
-# Geo + Ag
-temp = temp_df %>% filter(LULC == 'Agriculture/Barren')
-kruskal.test(Geophony ~ DayNight, data = temp)
-# NOT significant chi-squared = 1.9965, df = 1, p-value = 0.1577
-
-# Geo + Herb
-temp = temp_df %>% filter(LULC == 'Herbaceous')
-kruskal.test(Geophony ~ DayNight, data = temp)
-# significant p = 2.955e-16
-
-# Geo + RW
-temp = temp_df %>% filter(LULC == 'Riparian/Wetland')
-kruskal.test(Geophony ~ DayNight, data = temp)
-# NOT significant chi-squared = 1.4234, df = 1, p-value = 0.2328
-
-# Geo + Oak
-temp = temp_df %>% filter(LULC == 'Oak/Hardwood Forest')
-kruskal.test(Geophony ~ DayNight, data = temp)
-# significant p = 3.296 e-09
-
-# Geo + Conifer
-temp = temp_df %>% filter(LULC == 'Conifer Forest')
-kruskal.test(Geophony ~ DayNight, data = temp)
-# NOT significant chi-squared = 3.2935, df = 1, p-value = 0.0695

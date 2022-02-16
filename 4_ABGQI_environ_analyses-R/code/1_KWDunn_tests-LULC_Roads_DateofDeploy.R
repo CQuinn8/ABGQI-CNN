@@ -9,6 +9,7 @@ setwd('/published_repo/')
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(lubridate)
 library(rstatix) # Kruskal Wallis
 source('support_functions/color_theme_fxs.R')
 source('support_functions/functions.R')
@@ -109,7 +110,7 @@ Dunn_quiet = Dunn_quiet %>% add_xy_position(x = "LULC")
 
 
 ######## DEPLOYMENT DATE ANAYSIS #######
-# Results: 3.2.2 Annual and date of deployment differences
+# Results: 3.2.2 Annual and date of deployment differences (not included)
 temp_df = joined_df %>%
   dplyr::select(firstDate, YY)
 
@@ -119,31 +120,62 @@ kruskal.test(firstDate ~ YY, data = temp_df)
 # p-value = 2.2e-16 therefore treatment groups are significantly different
 
 # Dunn test following KW test to see WHICH groups differ
-t = temp_df %>%
-  dunn_test(firstDate ~ YY, p.adjust.method = "bonferroni") 
+(tempDunn = temp_df %>%
+  dunn_test(firstDate ~ YY, p.adjust.method = "bonferroni"))
 # based on pairwise: all deployment years are significantly different from each other
 
 
 ######## ANNUAL ANAYSIS #######
+# Results: 3.2.2 Annual differences in sound for overlapping deployment date range
+temp_df = joined_df %>%
+  dplyr::select(firstDate, YY, Anthropophony, Biophony, Quiet) %>%
+  mutate(firstDate = ymd(firstDate),
+         dayOfYear = yday(firstDate))
+
+# Print min and max dates for each year
+temp_df %>%
+  group_by(YY) %>%
+  summarise(min = min(dayOfYear),
+            max = max(dayOfYear),
+            minMMDD = min(firstDate),
+            maxMMDD = max(firstDate))
+
+# overlapping range in day of year: 122 (2020) to 186 (2019)
+temp_df = temp_df %>%
+  filter(dayOfYear >= 122 & dayOfYear <= 186)
+
+# number of observations per year for overlapping dates (n = 460 total sites)
+temp_df %>%
+  group_by(YY) %>%
+  summarise(n = n())
+
 #Anthro
-kruskal.test(Anthropophony ~ YY, data = joined_df)
-# p-value = 2.2e-16 therefore treatment groups are significantly different
-joined_df %>%
-    dunn_test(Anthropophony ~ YY, p.adjust.method = "bonferroni")
-# based on pairwise: 2017 - 2020 and 2018-2019 are not significant
+kruskal.test(Anthropophony ~ YY, data = temp_df)
+# p-value = 1.19e-7 therefore treatment groups are significantly different
+(tempDunn = temp_df %>%
+    dunn_test(Anthropophony ~ YY, p.adjust.method = "bonferroni"))
+# 2017-2019 and 2019-2020 are significant
 
 #Bio
-kruskal.test(Biophony ~ YY, data = joined_df)
-# p-value = 2.346e-07
-joined_df %>%
-  dunn_test(Biophony ~ YY, p.adjust.method = "bonferroni") 
+kruskal.test(Biophony ~ YY, data = temp_df)
+# p-value = 1.69e-6
+(tempDunn = temp_df %>%
+  dunn_test(Biophony ~ YY, p.adjust.method = "bonferroni"))
+# 2017-2019 and 2017-2020 are significant
 
 #Quiet
-kruskal.test(Quiet ~ YY, data = joined_df)
-# p-value = 2.2e-16 therefore treatment groups are significantly different
-joined_df %>%
-    dunn_test(Quiet ~ YY, p.adjust.method = "bonferroni")
+kruskal.test(Quiet ~ YY, data = temp_df)
+# p-value = 2.51e-16 therefore treatment groups are significantly different
+(tempDunn = temp_df %>%
+    dunn_test(Quiet ~ YY, p.adjust.method = "bonferroni"))
+# 2017-2018 are non-significant
 
+temp_df %>%
+  select(YY, Anthropophony, Biophony, Quiet) %>%
+  group_by(YY) %>%
+  summarise(Anthro = mean(Anthropophony),
+            Bio = mean(Biophony),
+            Quiet = mean(Quiet))
 
 ######## ROAD DIST/GROUP ANAYSIS #######
 # Results: 3.2.4: Distance to roads 

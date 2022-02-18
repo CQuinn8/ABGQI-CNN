@@ -1,10 +1,12 @@
 # Code repository for Quinn et al., 2022 <doi> 
-This code repository contains R and python scripts that process data and produce results from provided intermediate products for soundscape classification and ecological analyses. This work was funded under the Soundscapes 2 Landscapes, NASA’s Citizen Science for Earth Systems Program 16-CSESP 2016-0009 and is citable using the Zenodo DOI. Note: Please be aware that underlying software, specifically for the CNN implementation, may not continue stability as python libraries are updated.
+This code repository contains R and python scripts that process data and produce results from provided intermediate products for soundscape classification and ecological analyses. This work was funded under the Soundscapes 2 Landscapes, NASA’s Citizen Science for Earth Systems Program 16-CSESP 2016-0009 and is citable using the Zenodo DOI: <https://doi.org/10.5281/zenodo.6038459>. 
+	
+Note: Please be aware that underlying software, specifically for the CNN implementation, may not continue stability as python libraries are updated.
   
 ### This repository can: 
   1) generate all code-based figures, tables, and numerical results in the published manuscript.
   2) be used to re-train the ABGQI-CNN
-  3) be applied to novel acoustic data by generating 2-s Mel spectrograms, ABGQI-CNN inference probabilities, f-score threshold optimization, and classification based on CNN findings related to Soundscapes 2 Landscapes data
+  3) be applied to novel acoustic data by generating 2-s Mel spectrograms, ABGQI-CNN inference probabilities, f-score threshold optimization, and classification based on CNN findings related to Soundscapes 2 Landscapes data (Note: we will be releasing a streamlined set of code to deploy to other projects soon.)
 
 ### Installation  
 - Two Anaconda python environments are included in .yml files under envs. These provide information related to libraries used in spectrogram generation, CNN training, and inference. 

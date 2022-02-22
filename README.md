@@ -3,19 +3,34 @@ This code repository contains R and python scripts that process data and produce
 	
 Note: Please be aware that underlying software, specifically for the CNN implementation, may not continue stability as python libraries are updated.
   
-### This repository can: 
-  1) generate all code-based figures, tables, and numerical results in the published manuscript.
-  2) be used to re-train the ABGQI-CNN
-  3) be applied to novel acoustic data by generating 2-s Mel spectrograms, ABGQI-CNN inference probabilities, f-score threshold optimization, and classification based on CNN findings related to Soundscapes 2 Landscapes data (Note: we will be releasing a streamlined set of code to deploy to other projects soon.)
+## This repository can: 
+1) generate all code-based figures, tables, and numerical results in the published manuscript.
+2) be used to re-train the ABGQI-CNN
+3) be applied to novel acoustic data (5_ABGQI-CNN_deployment)
 
-### Installation  
+## Installation  
 - Two Anaconda python environments are included in .yml files under envs. These provide information related to libraries used in spectrogram generation, CNN training, and inference. 
 - R required libraries can be found in the envs R_requirements.txt file. The R_lib_install.R file can be run to install all packages in the requirements text file or you can manually download every package. Options to run the R_lib_installer:
-	1) RStudio: open R_lib_install.R, uncomment line 3 and specify path to envs/R_requirements.txt in Git repo.
-	2) command line: R_lib_installer.R <envs/R_requirements.txt>
-	- Note, warnings are suppressed. If this method results in errors or libs are not installed use "install.packages("<package name>") to manually install.
+	* RStudio: open R_lib_install.R, uncomment line 3 and specify path to envs/R_requirements.txt in Git repo.
+	* command line: R_lib_installer.R <envs/R_requirements.txt>
+	* Note, warnings are suppressed. If this method results in errors or libs are not installed use "install.packages("<package name>") to manually install.
 
-### List of scripts used to derive manuscript figures, tables, and results sections (when applicable):
+	
+## Rapidly deploy to novel recordings
+Use 5_ABGQI-CNN_deployment scripts to quickly generate Mel spectrograms, generate CNN predictions, and classify these predictions based on S2L thresholds (note: these should be adjusted with dataset-specific testing data for ideal results - i.e., generalizability is limited).
+- These scripts require changing the local directories to the cloned Git repo:
+	* 0_melspec_generation_csv.py line 30
+	* 1_inference_ABGQI.py line 34
+	* 2_S2L_ABGQI_classification.R line 4
+- In Git repo are examples from 3 S2L wav recordings. 
+- If scripts are run outside of Git repo create the following directories:
+	- data/wavs (where recordings are located)
+	- data/melspecs
+	- results/predctions
+	- results/classifications (note: data/threshold/*.csvs are needed from Git repo)
+
+## Manuscript data
+#### List of scripts used to derive manuscript figures, tables, and results sections (when applicable):
 - Fig 1: NA - derived using non-public GIS data in ArcGIS
 - Fig 2: NA - conceptual figure, no code used
 - Fig 3: NA - conceptual figure, no code used
@@ -28,7 +43,7 @@ Note: Please be aware that underlying software, specifically for the CNN impleme
 - Table 2: 3_cnn_threshold_optimization_and_accuracy-R/code/1_CNN_accuracy_metrics.R
 - Table 3: 4_ABGQI_environ_analyses-R/code/3_multivariate_regression.R
 
-### Results sections:
+#### Results sections:
 - 3.1 Model performance: most metrics in 3_cnn_threshold_optimization_and_accuracy-R/code/1_CNN_accuracy_metrics.R; cross validation numbers in data repository; rate of unidentified sound from 4_ABGQI_environ_analyses-R/code/0_ABGQIU_temporal_plotting_faceted_LCLU_figure6.R
 - 3.2 Statistical anlayses of soundscape components: 4_ABGQI_environ_analyses-R/code/0_ABGQIU_temporal_plotting_faceted_LCLU_figure6.R
 - 3.2.1 Diurnal LULC patterns: 4_ABGQI_environ_analyses-R/code/2_MannWhitney_tests-day_night.R  and 0_ABGQIU_temporal_plotting_faceted_LCLU_figure6.R

@@ -37,7 +37,7 @@ tf.__version__
 
 
 # USER INPUTS
-os.chdir('//shares.hpc.nau.edu/cirrus/projects/tropics/users/cquinn/s2l/code/paper_0-ABG_classification/published_github_repo')
+os.chdir('published_github_repo')
 melspec_dirs = [os.path.normpath(i) for i in glob.glob('5_ABGQI-CNN_deployment/data/melspecs/*')]
 results_dir = '5_ABGQI-CNN_deployment/results/predictions/'
 model_path = 'ABGQI-CNN'

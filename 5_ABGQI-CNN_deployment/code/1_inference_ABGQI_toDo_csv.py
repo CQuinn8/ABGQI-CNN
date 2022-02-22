@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import matplotlib
 matplotlib.use('Agg') # Cam Bodine's genius solution to output plots!!
 matplotlib.rcParams['figure.dpi'] = 72 #dpi manually set to match Shree's machine
@@ -33,17 +30,11 @@ AUTOTUNE = tf.data.experimental.AUTOTUNE
 tf.__version__
 
 
-# In[15]:
-
-
 # USER INPUTS
 os.chdir('published_github_repo')
 melspec_dirs = [os.path.normpath(i) for i in glob.glob('5_ABGQI-CNN_deployment/data/melspecs/*')]
 results_dir = '5_ABGQI-CNN_deployment/results/predictions/'
 model_path = 'ABGQI-CNN'
-
-
-# In[3]:
 
 
 # FUNCTIONS
@@ -64,9 +55,6 @@ def process_path(file_path, IMG_HEIGHT, IMG_WIDTH):
     return img #, label
 
 
-# In[4]:
-
-
 # Load in model (not checkpoint)
 model = tf.keras.models.load_model(model_path)
 IMG_HEIGHT = 224
@@ -74,9 +62,6 @@ IMG_WIDTH = 224
 
 model.summary()
 print('Number of folders in the parent Mel-Spec directory:',len(melspec_dirs))
-
-
-# In[18]:
 
 
 # iterate through each folder/wav file which contains mfccs

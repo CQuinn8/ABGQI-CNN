@@ -1,13 +1,15 @@
 library(data.table)
 library(dplyr)
+# Local wd
+wd = 'published_repo/'
 
-error_log = '5_ABGQI-CNN_deployment/results/error_logs.txt'
+error_log = paste0(wd,'5_ABGQI-CNN_deployment/results/error_logs.txt')
 
 # where outputs will be saved
-results_dir = '5_ABGQI-CNN_deployment/results/classifications/'
+results_dir = paste0(wd,'5_ABGQI-CNN_deployment/results/classifications/')
 
 # inference csvs from CNN : one csv = 1 wav
-inference_dir = '5_ABGQI-CNN_deployment/results/predictions/'
+inference_dir = paste0(wd,'5_ABGQI-CNN_deployment/results/predictions/')
 inference_csvs = list.files(inference_dir, pattern = "*.csv", full.names = FALSE)
 
 # create thresholded class values for ABGIQ by reading in each S2L results csv
@@ -16,7 +18,7 @@ label_threshes = list()
 for(target_label in labels){
   print(target_label)
   # read in optimal threshold based on model optimization
-  th_df = read.csv(paste0('5_ABGQI-CNN_deployment/data/thresholds/',target_label, ".csv"))
+  th_df = read.csv(paste0(wd,'5_ABGQI-CNN_deployment/data/thresholds/',target_label, ".csv"))
   th = subset(x = th_df, X == "th")$test
   label_threshes[target_label] = th
 }

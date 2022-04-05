@@ -40,7 +40,7 @@ print("Length of audio file list:", len(audio_files))
 # PROCESSING: MELSPEC GENERATION
 # iterate through each wav file 
 for no in range(len(audio_files)): 
-    wav_nm = audio_files[i].split('\\')[-1] # get wav name
+    wav_nm = audio_files[no].split('\\')[-1] # get wav name
     mel_store = os.path.join(out_dir, wav_nm) # melspec folder with wav name
     wav_pth = os.path.join(audio_dir, wav_nm + '.wav') # full wav path name
     

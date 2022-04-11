@@ -1,5 +1,5 @@
-# Code repository for Quinn et al., 2022 <doi> 
-This code repository contains R and python scripts that process data and produce results from provided intermediate products for soundscape classification and ecological analyses. This work was funded under the Soundscapes 2 Landscapes, NASA’s Citizen Science for Earth Systems Program 16-CSESP 2016-0009 and is citable using the Zenodo DOI: <https://doi.org/10.5281/zenodo.6038459>. 
+# Code repository for Quinn et al., 2022 (https://doi.org/10.1016/j.ecolind.2022.108831)
+This code repository contains R and python scripts that process data and produce results from provided intermediate products for soundscape classification and ecological analyses. This work was funded under the Soundscapes 2 Landscapes, NASA’s Citizen Science for Earth Systems Program 16-CSESP 2016-0009 and is citable using the Zenodo DOI: <https://doi.org/10.5281/zenodo.6038459> and supports the published manuscript <https://doi.org/10.1016/j.ecolind.2022.108831> 
 	
 Note: Please be aware that underlying software, specifically for the CNN implementation, may not continue stability as python libraries are updated.
   
